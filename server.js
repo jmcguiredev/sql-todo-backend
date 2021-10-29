@@ -1,7 +1,9 @@
 const mysql = require("mysql2");
 const express = require("express");
+const cors = require('cors');
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 const mysqlConnection = mysql.createConnection({
   host: "localhost",
@@ -24,13 +26,11 @@ app.post("/todo", (req, res) => {
     `INSERT INTO todoitem (label, note, completed) VALUES ('${req.body.label}', '${req.body.note}', '${req.body.completed}')`
   );
 
-  res.send("Data Inserted");
+  res.status().send("Data Inserted");
 });
 
 app.get("/todos", (req, res) => {
   console.log('REQ BODY ', req.body);
-
-  let resObjs = [];
 
   mysqlConnection.query(
     `SELECT * FROM todoitem`,
