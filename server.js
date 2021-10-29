@@ -28,17 +28,17 @@ app.post("/todo", (req, res) => {
 });
 
 app.get("/todos", (req, res) => {
-  console.log(req.body);
+  console.log('REQ BODY ', req.body);
+
+  let resObjs = [];
 
   mysqlConnection.query(
     `SELECT * FROM todoitem`,
     function (err, results, fields) {
-      console.log(results);
-      console.log(fields);
+      console.log('RESULTS ' ,results);
+      res.send(results);
     }
   );
-
-  res.send();
 });
 
 app.listen(3000, () => {
