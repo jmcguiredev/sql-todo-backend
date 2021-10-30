@@ -26,7 +26,7 @@ app.post("/todo", (req, res) => {
     `INSERT INTO todoitem (label, note, completed) VALUES ('${req.body.label}', '${req.body.note}', '${req.body.completed}')`
   );
 
-  res.status().send("Data Inserted");
+  res.status(201).send("Data Inserted");
 });
 
 app.get("/todos", (req, res) => {
