@@ -29,6 +29,14 @@ app.post("/todo", (req, res) => {
   res.status(201).send("Data Inserted");
 });
 
+app.put('/todo', (req, res) => {
+    
+    console.log('PUT BODY', req.body);
+    mysqlConnection.query(`UPDATE todoitem SET label='${req.body.label}', note='${req.body.note}', completed='${req.body.completed ? 1 : 0}' WHERE _id = ${req.body._id}`);
+    res.status(201).send("Data Inserted");
+  
+});
+
 app.get("/todos", (req, res) => {
   console.log('REQ BODY ', req.body);
 
